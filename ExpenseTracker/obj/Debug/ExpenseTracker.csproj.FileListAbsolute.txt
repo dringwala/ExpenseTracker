@@ -1,0 +1,15 @@
+C:\GIT\FirstApp\ExpenseTracker\obj\Debug\ExpenseTracker.csproj.CoreCompileInputs.cache
+C:\GIT\FirstApp\ExpenseTracker\bin\Debug\ExpenseTracker.dll
+C:\GIT\FirstApp\ExpenseTracker\bin\Debug\ExpenseTracker.pdb
+C:\GIT\FirstApp\ExpenseTracker\bin\Debug\ExpenseTracker.ExpenseTracker.apk
+C:\GIT\FirstApp\ExpenseTracker\bin\Debug\ExpenseTracker.ExpenseTracker-Signed.apk
+C:\GIT\FirstApp\ExpenseTracker\obj\Debug\ExpenseTracker.dll
+C:\GIT\FirstApp\ExpenseTracker\obj\Debug\ExpenseTracker.pdb
+C:\GIT\FirstApp\ExpenseTracker\obj\Debug\android\bin\ExpenseTracker.ExpenseTracker.apk
+C:\GIT\FirstApp\ExpenseTracker\obj\Debug\res\layout\main.xml
+C:\GIT\FirstApp\ExpenseTracker\obj\Debug\res\values\strings.xml
+C:\GIT\FirstApp\ExpenseTracker\obj\Debug\res\drawable\icon.png
+C:\GIT\FirstApp\ExpenseTracker\obj\Debug\R.cs.flag
+C:\GIT\FirstApp\ExpenseTracker\obj\Debug\uploadflags.txt
+C:\GIT\FirstApp\ExpenseTracker\bin\Debug\ExpenseTracker.dll.mdb
+C:\GIT\FirstApp\ExpenseTracker\obj\Debug\android\assets\ExpenseTracker.dll.mdb
