@@ -1,2 +1,8 @@
 .\ExpenseTracker\bin
 ExpenseTracker/obj/
+/MVC4/.vs
+/MVC4/ExpenseTracker/bin
+/MVC4/ExpenseTracker/obj/Debug
+/MVC4/ExpenseTracker.Tests/bin/Debug
+/MVC4/ExpenseTracker.Tests/obj/Debug
+/MVC4/packages
