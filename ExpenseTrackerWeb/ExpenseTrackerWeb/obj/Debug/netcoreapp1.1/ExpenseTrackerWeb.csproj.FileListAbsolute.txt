@@ -1,0 +1,12 @@
+C:\GIT\ExpenseTracker\ExpenseTrackerWeb\ExpenseTrackerWeb\bin\Debug\netcoreapp1.1\ExpenseTrackerWeb.deps.json
+C:\GIT\ExpenseTracker\ExpenseTrackerWeb\ExpenseTrackerWeb\bin\Debug\netcoreapp1.1\ExpenseTrackerWeb.runtimeconfig.json
+C:\GIT\ExpenseTracker\ExpenseTrackerWeb\ExpenseTrackerWeb\bin\Debug\netcoreapp1.1\ExpenseTrackerWeb.runtimeconfig.dev.json
+C:\GIT\ExpenseTracker\ExpenseTrackerWeb\ExpenseTrackerWeb\bin\Debug\netcoreapp1.1\ExpenseTrackerWeb.dll
+C:\GIT\ExpenseTracker\ExpenseTrackerWeb\ExpenseTrackerWeb\bin\Debug\netcoreapp1.1\ExpenseTrackerWeb.pdb
+C:\GIT\ExpenseTracker\ExpenseTrackerWeb\ExpenseTrackerWeb\obj\Debug\netcoreapp1.1\ExpenseTrackerWeb.csprojResolveAssemblyReference.cache
+C:\GIT\ExpenseTracker\ExpenseTrackerWeb\ExpenseTrackerWeb\obj\Debug\netcoreapp1.1\ExpenseTrackerWeb.csproj.CoreCompileInputs.cache
+C:\GIT\ExpenseTracker\ExpenseTrackerWeb\ExpenseTrackerWeb\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs
+C:\GIT\ExpenseTracker\ExpenseTrackerWeb\ExpenseTrackerWeb\obj\Debug\netcoreapp1.1\ExpenseTrackerWeb.AssemblyInfoInputs.cache
+C:\GIT\ExpenseTracker\ExpenseTrackerWeb\ExpenseTrackerWeb\obj\Debug\netcoreapp1.1\ExpenseTrackerWeb.AssemblyInfo.cs
+C:\GIT\ExpenseTracker\ExpenseTrackerWeb\ExpenseTrackerWeb\obj\Debug\netcoreapp1.1\ExpenseTrackerWeb.dll
+C:\GIT\ExpenseTracker\ExpenseTrackerWeb\ExpenseTrackerWeb\obj\Debug\netcoreapp1.1\ExpenseTrackerWeb.pdb

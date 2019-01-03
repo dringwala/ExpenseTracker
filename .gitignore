@@ -1,2 +1,4 @@
 .\ExpenseTracker\bin
 ExpenseTracker/obj/
+TrackerAPI/TrackerAPI/obj/
+TrackerAPI/TrackerAPI/bin

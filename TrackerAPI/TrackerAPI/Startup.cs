@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TrackerAPI.Models;
+using TrackerDB;
 
 namespace TrackerAPI
 {
@@ -25,7 +26,9 @@ namespace TrackerAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TrackerContext>(opt => opt.UseInMemoryDatabase("Banks"));
+            services.AddScoped<ITrackerRepository, TrackerRepository>();
+            //services.AddDbContext<TrackerDbContext>(opt => opt.UseSqlServer("DefaultConnection"));
+            services.AddScoped<TrackerDbContext>(_ => new TrackerDbContext(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
         }
 
