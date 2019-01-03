@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ExpenseTracker.Models.Bank>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<H3> Banks </H3>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var item in Model)
+{
+    <div class="bank">
+        <h4>@Html.DisplayFor(modelItem => item.FriendlyName) Bank : @Html.DisplayFor(modelItem => item.Name) </h4>
+        <span> Accounts </span>
+     
+        @Html.Partial("_AccountDetails", item.Accounts)
+
+        @Html.ActionLink("Edit", "Edit", new {id = item.BankId})
+    </div>
+
+}
+
+
+</body>
+</html>
