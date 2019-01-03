@@ -7,9 +7,13 @@ using System.Web;
 
 namespace ExpenseTracker.Models
 {
-    public class ExpenseTrackerContext : DbContext
+    public class ExpenseTrackerDb : DbContext
     {
+        public ExpenseTrackerDb() : base("name=DefaultConnection")
+        {
+            
+        }
         public DbSet<Bank> Banks { get; set; }
-        public DbSet<BankAccount> Accounts { get; set; }
+        public DbSet<BankAccount> BankAccounts { get; set; }
     }
 }
