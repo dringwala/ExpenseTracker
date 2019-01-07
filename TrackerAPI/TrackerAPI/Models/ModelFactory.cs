@@ -39,17 +39,20 @@ namespace TrackerAPI.Models
             try
             {
                 var bank = new Bank();
-                var selfLink = bankModel.Links.Where(l => l.Rel == "self").FirstOrDefault();
-                if (selfLink != null && !string.IsNullOrWhiteSpace(selfLink.Href))
+                if (bankModel.Links != null)
                 {
-                    var uri = new Uri(selfLink.Href);
-                    bank.Id = int.Parse(uri.Segments.Last());
+                    var selfLink = bankModel.Links.Where(l => l.Rel == "self").FirstOrDefault();
+                    if (selfLink != null && !string.IsNullOrWhiteSpace(selfLink.Href))
+                    {
+                        var uri = new Uri(selfLink.Href);
+                        bank.Id = int.Parse(uri.Segments.Last());
+                    }
                 }
 
-                
+
                 bank.IsActive = bankModel.IsActive;
                 bank.Name = bankModel.Name;
-
+                bank.BankUrl = bankModel.BankUrl;
                 return bank;
             }
             catch

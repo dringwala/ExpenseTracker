@@ -29,6 +29,9 @@ namespace TrackerAPI
             services.AddScoped<ITrackerRepository, TrackerRepository>();
             //services.AddDbContext<TrackerDbContext>(opt => opt.UseSqlServer("DefaultConnection"));
             services.AddScoped<TrackerDbContext>(_ => new TrackerDbContext(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.BuildServiceProvider().GetService<TrackerDbContext>().Database.Migrate();
+
             services.AddMvc();
         }
 
