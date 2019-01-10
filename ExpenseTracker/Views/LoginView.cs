@@ -17,7 +17,7 @@ using System.Linq;
 using System.Text;
 
 
-[System.CodeDom.Compiler.GeneratedCodeAttribute("RazorTemplatePreprocessor", "4.6.0.295")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("RazorTemplatePreprocessor", "4.1.1.3")]
 public partial class LoginView : LoginViewBase
 {
 
@@ -32,15 +32,44 @@ public ExpenseTracker.Models.LoginModel Model { get; set; }
 
 public override void Execute()
 {
-WriteLiteral("    <html>\r\n    <head>\r\n        <link");
+WriteLiteral("    <html>\r\n    <head>\r\n        \r\n        <link");
 
 WriteLiteral(" rel=\"stylesheet\"");
 
-WriteAttribute ("href", " href=\"", "\""
-, Tuple.Create<string,object,bool> ("", Href("~/Assets/style.css")
-, false)
-);
-WriteLiteral(" />\r\n    </head>\r\n    <body>\r\n        <div");
+WriteLiteral(" href=\"style.css\"");
+
+WriteLiteral(" />\r\n\r\n        <script");
+
+WriteLiteral(" type=\"text/javascript\"");
+
+WriteLiteral(@">
+
+            // This javascript method calls C# by setting the browser
+            // to a URL with a custom scheme that is registered in C#.
+            // All values are sent to C# as part of the querystring
+            function InvokeCSharpWithFormValues(elm) {
+                var qs = """";
+                var elms = elm.form.elements;
+
+                for (var i = 0; i < elms.length; i++) {
+                    qs += ""&"" + elms[i].name + ""="" + elms[i].value;
+                }
+
+                if (elms.length > 0)
+                    qs = qs.substring(1);
+
+                location.href = ""hybrid:"" + elm.name + ""?"" + qs;
+            }
+
+            // This javascript method is called from C#
+            function SetLabelText(text) {
+                var elm = document.getElementById('action');
+                elm.innerHTML = text;
+            }
+        </script>
+    </head>
+    <body>
+        <div");
 
 WriteLiteral(" data-role=\"page\"");
 
@@ -50,8 +79,43 @@ WriteLiteral(">\r\n            <form>\r\n                <div");
 
 WriteLiteral(" data-role=\"content\"");
 
-WriteLiteral(">\r\n                    <label>User Name</label>\r\n                </div>\r\n        " +
-"    </form>\r\n        </div>\r\n    </body>\r\n</html> ");
+WriteLiteral(">\r\n                    <h1");
+
+WriteLiteral(" id=\"action\"");
+
+WriteLiteral("></h1>\r\n                    <h1");
+
+WriteLiteral(" id=\"label\"");
+
+WriteLiteral(">User name</h1>\r\n\r\n                    <input");
+
+WriteLiteral(" type=\"text\"");
+
+WriteLiteral(" id=\"textbox\"");
+
+WriteLiteral(" name=\"textbox\"");
+
+WriteAttribute ("value", " value=", ""
+
+#line 40 "LoginView.cshtml"
+                                  , Tuple.Create<string,object,bool> ("", Model.UserName
+
+#line default
+#line hidden
+, false)
+);
+WriteLiteral(" />\r\n\r\n                    <input");
+
+WriteLiteral(" type=\"button\"");
+
+WriteLiteral(" name=\"UpdateLabel\"");
+
+WriteLiteral(" value=\"Login\"");
+
+WriteLiteral(" onclick=\"InvokeCSharpWithFormValues(this)\"");
+
+WriteLiteral(" />\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </body>\r\n</" +
+"html> ");
 
 }
 }

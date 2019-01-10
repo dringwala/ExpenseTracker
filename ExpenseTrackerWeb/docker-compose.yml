@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  expensetrackerweb:
+    image: expensetrackerweb
+    build:
+      context: ./ExpenseTrackerWeb
+      dockerfile: Dockerfile

@@ -27,10 +27,15 @@ namespace ExpenseTracker
             // Use subclassed WebViewClient to intercept hybrid native calls
             webView.SetWebViewClient(new HybridWebViewClient());
 
-            // Render the view from the type generated from RazorView.cshtml
-            var model = new Model1() { Text = "Enter Text"};
-            var template = new RazorView() { Model = model };
+            //// Render the view from the type generated from RazorView.cshtml
+            //var model = new Model1() { Text = "Enter Text"};
+            //var template = new RazorView() { Model = model };
+            //var page = template.GenerateString();
+
+            var model = new LoginModel { UserName = "Enter User Name"};
+            var template = new LoginView {Model = model};
             var page = template.GenerateString();
+
 
             // Load the rendered HTML into the view with a base URL 
             // that points to the root of the bundled Assets folder
