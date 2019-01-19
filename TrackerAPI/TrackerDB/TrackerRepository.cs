@@ -48,6 +48,8 @@ namespace TrackerDB
         {
             try
             {
+                if (_ctx.Banks.Any(_ => _.Name.Equals(bank.Name, StringComparison.InvariantCultureIgnoreCase)))
+                    return false;
                 _ctx.Banks.Add(bank);
                 return true;
             }
