@@ -38,18 +38,21 @@ namespace TrackerDB
         {
             return GetUserTransactions(userName).Where(t => t.Account.Id == accountID);
         }
-
-       public Bank GetBank(long id)
+        #region Banks
+        public Bank GetBank(long id)
         {
-            return _ctx.Banks.Where(bank => bank.Id == id).FirstOrDefault();
+            return _ctx.Banks.FirstOrDefault(bank => bank.Id == id);
+        }
+
+        public Bank GetBankByName(string bankName)
+        {
+            return _ctx.Banks.FirstOrDefault(bank => bank.Name.Equals(bankName, StringComparison.InvariantCultureIgnoreCase));
         }
 
         public bool Insert (Bank bank)
         {
             try
             {
-                if (_ctx.Banks.Any(_ => _.Name.Equals(bank.Name, StringComparison.InvariantCultureIgnoreCase)))
-                    return false;
                 _ctx.Banks.Add(bank);
                 return true;
             }
@@ -83,7 +86,7 @@ namespace TrackerDB
             }
             return false;
         }
-
+        #endregion Banks
         private bool UpdateEntity<T>(DbSet<T> dbSet, T entity) where T: class
         {
             try {

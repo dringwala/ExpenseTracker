@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using TrackerAPI.Models;
 using TrackerDB;
 
@@ -36,11 +37,27 @@ namespace TrackerAPI.Controllers
             return Ok(TheModelFactory.Create(item));
         }
 
+        [HttpGet("{bankName}", Name = "GetBankByName")]
+        public IActionResult GetByBankName(string bankName)
+        {
+            var item = TheRepository.GetBankByName(bankName);
+            if (item == null)
+                return NotFound();
+            return Ok(TheModelFactory.Create(item));
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody] BankModel bank)
         {
             if (bank == null)
                 return BadRequest();
+
+            var existingBank = TheRepository.GetBankByName(bank.Name);
+            if (existingBank != null)
+            {
+                var existingBankModel = TheModelFactory.Create(existingBank);
+                return Conflict(existingBankModel);
+            }
 
             var entity = TheModelFactory.Parse(bank);
             TheRepository.Insert(entity);

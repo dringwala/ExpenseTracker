@@ -7,6 +7,7 @@ namespace TrackerDB
     {
         IQueryable<Bank> GetAllBanks();
         Bank GetBank(long id);
+        Bank GetBankByName(string bankName);
         bool Insert(Bank bank);
         bool Update(Bank bank);
         bool DeleteBank(long id);
