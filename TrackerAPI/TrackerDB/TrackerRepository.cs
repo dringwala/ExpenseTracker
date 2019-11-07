@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using TrackerDB.Entities;
 
 namespace TrackerDB
@@ -8,9 +9,11 @@ namespace TrackerDB
     public class TrackerRepository :ITrackerRepository
     {
         TrackerDbContext _ctx;
-        public TrackerRepository(TrackerDbContext ctx)
+        ILogger _logger;
+        public TrackerRepository(TrackerDbContext ctx, ILogger logger)
         {
             _ctx = ctx;
+            _logger = logger;
         }
 
         public IQueryable<Bank> GetAllBanks()
@@ -18,26 +21,6 @@ namespace TrackerDB
             return _ctx.Banks;
         }
 
-        public IQueryable<TransactionCategory> GetAllTransactionCategories()
-        {
-            return _ctx.TransactionCategories;
-        }
-
-        public IQueryable<Transaction> GetUserTransactions(string userName)
-        {
-            return _ctx.Transactions.Include("Account")
-                                    .Where(t=> t.Account.UserName.Equals(userName));
-        }
-
-        public IQueryable<Account> GetUserAccounts(string userName)
-        {
-            return _ctx.Accounts.Where(a => a.UserName.Equals(userName));
-        }
-
-        public IQueryable<Transaction> GetAccountTransactions(string userName, long accountID)
-        {
-            return GetUserTransactions(userName).Where(t => t.Account.Id == accountID);
-        }
         #region Banks
         public Bank GetBank(long id)
         {
@@ -65,31 +48,104 @@ namespace TrackerDB
         {
             return UpdateEntity(_ctx.Banks, bank);
         }
-
-        public bool Update(TransactionCategory category)
-        {
-            return UpdateEntity(_ctx.TransactionCategories, category);
-        }
-
+        
         public bool DeleteBank(long id)
         {
-            try {
+            try
+            {
                 var entity = _ctx.Banks.Where(b => b.Id == id).FirstOrDefault();
-                if(entity != null)
+                if (entity != null)
                 {
                     _ctx.Banks.Remove(entity);
                     return true;
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                _logger.LogError($"Exception occurred deleting Bank id {id}, Exception {ex}");
             }
             return false;
         }
         #endregion Banks
-        private bool UpdateEntity<T>(DbSet<T> dbSet, T entity) where T: class
+
+        #region Accounts
+        public IQueryable<Account> GetAllAccountsByUser(long userName)
         {
-            try {
+            return _ctx.Accounts.Include("Bank").Where(a => a.UserName == userName);
+        }
+
+        public Account GetAccountByIdAndUser(long id, long userName)
+        {
+            return _ctx.Accounts.Include("Bank").FirstOrDefault(a => a.Id == id && a.UserName == userName);
+        }
+
+        public Account GetAccountByNameAndUser(string accountName, long userName)
+        {
+            return _ctx.Accounts.Include("Bank").FirstOrDefault(a => a.UserName == userName && a.Name.Equals(accountName, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        public bool Insert(Account account)
+        {
+            try
+            {
+                _ctx.Accounts.Add(account);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool Update(Account account)
+        {
+            return UpdateEntity(_ctx.Accounts, account);            
+        }
+
+        public bool DeleteAccount(long id)
+        {
+            try
+            {
+                var entity = _ctx.Accounts.Where(a => a.Id == id).FirstOrDefault();
+                if (entity != null)
+                {
+                    _ctx.Accounts.Remove(entity);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Exception occurred deleting account id {id}, Exception {ex}");
+            }
+
+            return false;
+        }
+        #endregion 
+        public bool Update(TransactionCategory category)
+        {
+            return UpdateEntity(_ctx.TransactionCategories, category);
+        }
+        public IQueryable<TransactionCategory> GetAllTransactionCategories()
+        {
+            return _ctx.TransactionCategories;
+        }
+
+        public IQueryable<Transaction> GetUserTransactions(string userName)
+        {
+            return _ctx.Transactions.Include("Account")
+                                    .Where(t => t.Account.UserName.Equals(userName));
+        }
+
+        public IQueryable<Transaction> GetAccountTransactions(string userName, long accountID)
+        {
+            return GetUserTransactions(userName).Where(t => t.Account.Id == accountID);
+        }
+
+        #region helpers
+        private bool UpdateEntity<T>(DbSet<T> dbSet, T entity) where T : class
+        {
+            try
+            {
                 dbSet.AttachAsModified(entity, _ctx);
                 return true;
             }
@@ -102,6 +158,8 @@ namespace TrackerDB
         {
             return _ctx.SaveChanges() > 0;
         }
+        #endregion
+
     }
 }
 

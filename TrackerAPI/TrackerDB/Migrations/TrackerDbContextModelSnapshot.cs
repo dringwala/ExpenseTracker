@@ -29,11 +29,13 @@ namespace TrackerDB.Migrations
 
                     b.Property<string>("AccountType");
 
-                    b.Property<long?>("BankId");
+                    b.Property<long>("BankId");
 
                     b.Property<string>("Name");
 
                     b.Property<string>("Number");
+
+                    b.Property<string>("Tags");
 
                     b.Property<long>("UserName");
 
@@ -41,7 +43,7 @@ namespace TrackerDB.Migrations
 
                     b.HasIndex("BankId");
 
-                    b.ToTable("Account");
+                    b.ToTable("Accounts");
                 });
 
             modelBuilder.Entity("TrackerDB.Entities.Bank", b =>
@@ -56,9 +58,34 @@ namespace TrackerDB.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("Tags");
+
                     b.HasKey("Id");
 
                     b.ToTable("Banks");
+                });
+
+            modelBuilder.Entity("TrackerDB.Entities.StoreDetails", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Latitude");
+
+                    b.Property<string>("Longitude");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("StoreAddress");
+
+                    b.Property<string>("Tags");
+
+                    b.Property<string>("Website");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StoreDetails");
                 });
 
             modelBuilder.Entity("TrackerDB.Entities.Transaction", b =>
@@ -67,17 +94,26 @@ namespace TrackerDB.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("AccountId");
+                    b.Property<long>("AccountId");
 
                     b.Property<string>("Description");
 
+                    b.Property<byte[]>("Receipt");
+
+                    b.Property<long?>("StoreDetailId");
+
                     b.Property<string>("StoreName");
 
-                    b.Property<string>("TransactionCategory");
+                    b.Property<string>("StoreTransactionID");
 
-                    b.Property<double>("TransactionCost");
+                    b.Property<string>("Tags");
 
-                    b.Property<DateTimeOffset>("TransactionDate");
+                    b.Property<double>("TransactionAmount");
+
+                    b.Property<string>("TransactionCategoryCategory")
+                        .IsRequired();
+
+                    b.Property<DateTimeOffset>("TransactionDateTime");
 
                     b.Property<string>("UserName");
 
@@ -85,21 +121,50 @@ namespace TrackerDB.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Transaction");
+                    b.HasIndex("StoreDetailId");
+
+                    b.HasIndex("TransactionCategoryCategory");
+
+                    b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("TrackerDB.Entities.TransactionCategory", b =>
+                {
+                    b.Property<string>("Category")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Credit");
+
+                    b.Property<string>("Description");
+
+                    b.HasKey("Category");
+
+                    b.ToTable("TransactionCategory");
                 });
 
             modelBuilder.Entity("TrackerDB.Entities.Account", b =>
                 {
-                    b.HasOne("TrackerDB.Entities.Bank")
+                    b.HasOne("TrackerDB.Entities.Bank", "Bank")
                         .WithMany("Accounts")
-                        .HasForeignKey("BankId");
+                        .HasForeignKey("BankId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TrackerDB.Entities.Transaction", b =>
                 {
-                    b.HasOne("TrackerDB.Entities.Account")
+                    b.HasOne("TrackerDB.Entities.Account", "Account")
                         .WithMany("Transactions")
-                        .HasForeignKey("AccountId");
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("TrackerDB.Entities.StoreDetails", "StoreDetail")
+                        .WithMany()
+                        .HasForeignKey("StoreDetailId");
+
+                    b.HasOne("TrackerDB.Entities.TransactionCategory", "TransactionCategory")
+                        .WithMany()
+                        .HasForeignKey("TransactionCategoryCategory")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

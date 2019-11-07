@@ -11,7 +11,7 @@ namespace TrackerDB.Entities
         public string Name { get; set; }
         public string BankUrl { get; set; }
         public bool IsActive { get; set; }
-
+        public string Tags { get; set; }
         public ICollection<Account> Accounts { get; set; }
     }
 }

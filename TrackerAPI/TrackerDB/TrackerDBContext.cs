@@ -37,6 +37,7 @@ namespace TrackerDB
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<TransactionCategory> TransactionCategories { get; set; }
+        public DbSet<StoreDetails> StoreDetails { get; set; }
 
 
     }

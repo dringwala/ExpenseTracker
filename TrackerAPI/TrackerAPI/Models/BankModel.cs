@@ -12,6 +12,7 @@ namespace TrackerAPI.Models
         public string Name { get; set; }
         public string BankUrl { get; set; }
         public bool IsActive { get; set; }
+
         public IEnumerable<AccountModel> Accounts;
     }
 }
