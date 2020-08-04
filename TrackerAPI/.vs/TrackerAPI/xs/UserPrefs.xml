@@ -1,0 +1,47 @@
+﻿<Properties StartupConfiguration="{2F518C63-E7AC-4C06-9C87-7145DDD4B9F7}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TrackerDB/Entities/Transaction.cs">
+    <Files>
+      <File FileName="TrackerAPI/Startup.cs" Line="33" Column="66" />
+      <File FileName="TrackerDB/TrackerDBContext.cs" Line="25" Column="15" />
+      <File FileName="TrackerAPI/appsettings.json" Line="10" Column="20" />
+      <File FileName="TrackerAPI/appsettings.Development.json" Line="1" Column="1" />
+      <File FileName="TrackerAPI/Controllers/BankController.cs" Line="51" Column="1" />
+      <File FileName="TrackerAPI/Properties/launchSettings.json" Line="29" Column="2" />
+      <File FileName="TrackerAPI/Models/BankModel.cs" Line="15" Column="45" />
+      <File FileName="TrackerAPI/Models/AccountModel.cs" Line="1" Column="1" />
+      <File FileName="TrackerDB/Entities/Account.cs" Line="22" Column="1" />
+      <File FileName="TrackerDB/Entities/Transaction.cs" Line="24" Column="1" />
+      <File FileName="TrackerDB/Entities/TransactionCategory.cs" Line="1" Column="1" />
+      <File FileName="TrackerDB/Entities/Bank.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TrackerAPI" expanded="True">
+            <Node name="TrackerAPI" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="wwwroot" expanded="True" />
+            </Node>
+            <Node name="TrackerDB" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
+              <Node name="Entities" expanded="True">
+                <Node name="Transaction.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.TrackerAPI PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
