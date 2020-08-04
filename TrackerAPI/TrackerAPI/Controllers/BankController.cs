@@ -21,11 +21,11 @@ namespace TrackerAPI.Controllers
         }
 
         [HttpGet]
-        public object GetAll()
+        public IActionResult GetAll()
         {
-            return TheRepository.GetAllBanks().OrderBy(b=> b.Name)
+            return Ok(TheRepository.GetAllBanks().OrderBy(b=> b.Name)
                                        .ToList()
-                                       .Select(bank => TheModelFactory.Create(bank)) ;
+                                       .Select(bank => TheModelFactory.Create(bank))) ;
         }
 
         [HttpGet("{id}", Name = "GetBank")]

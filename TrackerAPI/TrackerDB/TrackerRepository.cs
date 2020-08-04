@@ -158,6 +158,41 @@ namespace TrackerDB
         {
             return _ctx.SaveChanges() > 0;
         }
+
+        public bool DeleteAccount(long id, long userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<Transaction> GetAllTransactionsByUser(long userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Transaction GetTransactionByIdAndUser(long id, long userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Transaction GetTransactionByStoreAndUser(string storeName, long userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Insert(Transaction transaction)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(Transaction transaction)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteTransaction(long id, long userName)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
     }

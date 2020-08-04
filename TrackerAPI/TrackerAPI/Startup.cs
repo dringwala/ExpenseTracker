@@ -8,9 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Hosting;
 using TrackerAPI.Models;
 using TrackerDB;
+
 
 namespace TrackerAPI
 {
@@ -30,13 +31,17 @@ namespace TrackerAPI
             //services.AddDbContext<TrackerDbContext>(opt => opt.UseSqlServer("DefaultConnection"));
             services.AddScoped<TrackerDbContext>(_ => new TrackerDbContext(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.BuildServiceProvider().GetService<TrackerDbContext>().Database.Migrate();
+            services.BuildServiceProvider()
+                    .GetService<TrackerDbContext>().Database
+                    .Migrate();
 
-            services.AddMvc();
+            services.AddRazorPages();
+            //services.AddMvc();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -44,7 +49,13 @@ namespace TrackerAPI
             }
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseMvc();
+
+            app.UseRouting();
+            
+            app.UseEndpoints(endpoint => {
+                endpoint.MapControllers();
+            });
+            
         }
     }
 }
