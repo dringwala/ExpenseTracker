@@ -9,21 +9,27 @@ namespace TrackerDB
     public class TrackerDbContext : DbContext
     {
         string _connectionString = "Server=.;Database=TrackerDB;Trusted_Connection=True";
+        bool _usePostGres = false;
         public TrackerDbContext(DbContextOptions<TrackerDbContext> options) : base(options)
-        { }
+        {
+            
+        }
 
-        public TrackerDbContext(string connectionString) : base()
+        public TrackerDbContext(string connectionString, bool usePostGres) : base()
         {
             if (!string.IsNullOrEmpty(connectionString))
                 _connectionString = connectionString;
+            _usePostGres = usePostGres;
         }
         public TrackerDbContext() : base()
         { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(_connectionString);
-            //optionsBuilder.UseSqlServer(_connectionString);
+            if (_usePostGres)
+                optionsBuilder.UseNpgsql(_connectionString);
+            else
+                optionsBuilder.UseSqlServer(_connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

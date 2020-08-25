@@ -9,3 +9,5 @@ MVC4\ExpenseTracker.Tests\obj
 /MVC4/packages
 TrackerAPI/TrackerDB/bin/
 TrackerAPI/TrackerDB/obj/
+TrackerAPI/TrackerAPI.Tests/bin/
+TrackerAPI/TrackerAPI.Tests/obj/

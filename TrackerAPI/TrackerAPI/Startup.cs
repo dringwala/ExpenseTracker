@@ -29,7 +29,7 @@ namespace TrackerAPI
         {
             services.AddScoped<ITrackerRepository, TrackerRepository>();
             //services.AddDbContext<TrackerDbContext>(opt => opt.UseSqlServer("DefaultConnection"));
-            services.AddScoped<TrackerDbContext>(_ => new TrackerDbContext(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<TrackerDbContext>(_ => new TrackerDbContext(Configuration.GetConnectionString("DefaultConnection"), Configuration.GetValue<bool>("UsePostGres", false )));
 
             services.BuildServiceProvider()
                     .GetService<TrackerDbContext>().Database
